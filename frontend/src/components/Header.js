@@ -15,8 +15,8 @@ function Header() {
  
         <div class="nav col-12 col-md-auto mb-2 px-2"> 
             <li><a href="/" class="nav-link px-2 link-secondary">Accueil</a></li> 
-            <button type="button" class="btn btn-outline-primary me-2">Connexion</button> 
-            <button type="button" class="btn btn-primary">S'inscrire</button> 
+            <button type="button" class="btn btn-outline-primary me-2"><a href="/login" class="nav-link px-2 link-secondary">Connexion </a></button> 
+            <button type="button" class="btn btn-primary"><a href="/register" class="nav-link px-2 link-secondary">S'inscrire</a></button> 
         </div> 
     </header> 
 
