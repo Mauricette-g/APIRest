@@ -13,10 +13,10 @@ function RegisterPage() {
   return (
     <div>
       <h2>Inscription</h2>
-      <input placeholder="Nom" onChange={e => setForm({ ...form, name: e.target.value })} />
-      <input placeholder="Email" onChange={e => setForm({ ...form, email: e.target.value })} />
-      <input placeholder="Mot de passe" type="password" onChange={e => setForm({ ...form, password: e.target.value })} />
-      <button onClick={register}>S'inscrire</button>
+      <input class="me-2" placeholder="Nom" onChange={e => setForm({ ...form, name: e.target.value })} />
+      <input class="me-2" placeholder="Email" onChange={e => setForm({ ...form, email: e.target.value })} />
+      <input class="me-2" placeholder="Mot de passe" type="password" onChange={e => setForm({ ...form, password: e.target.value })} />
+      <button class="btn btn-primary me-2" onClick={register}>S'inscrire</button>
     </div>
   );
 }

@@ -14,9 +14,9 @@ function LoginPage() {
   return (
     <div>
       <h2>Connexion</h2>
-      <input onChange={e => setEmail(e.target.value)} placeholder="Email" />
-      <input onChange={e => setPassword(e.target.value)} type="password" placeholder="Mot de passe" />
-      <button onClick={login}>Connexion</button>
+      <input class="me-2" onChange={e => setEmail(e.target.value)} placeholder="Email" />
+      <input class="me-2" onChange={e => setPassword(e.target.value)} type="password" placeholder="Mot de passe" />
+      <button class="btn btn-primary me-2" onClick={login}>Connexion</button>
     </div>
   );
 }
