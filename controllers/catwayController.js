@@ -4,7 +4,7 @@ const Catway = require('../models/catway');
 exports.createCatway = async (req, res) => {
   const { catwayNumber, type, catwayState, boatName } = req.body;
   try {
-    const catway = new Catway({ catwayNumber, type, catwayState, boatName });
+    const catway = new Catway({ catwayNumber, type, catwayState, boatName, user: req.user.id });
     await catway.save();
     res.status(201).json(catway);
     res.status(201).json({ message: 'Catway créé avec succès' });
@@ -17,38 +17,48 @@ exports.createCatway = async (req, res) => {
 //Modification d'un catway
 exports.updateCatway = async (req, res) => {
   try {
-    const catway = await Catway.findById(req.params.id);
+    const { id } = req.params;
+    const updateFields = { ...req.body };
 
-    if (!catway) return res.status(404).json({ msg: 'Catway introuvable' });
-    if (catway.user.toString() !== req.user.id)
-      return res.status(401).json({ msg: 'Non autorisé' });
+    if (updateFields.user) delete updateFields.user;
 
+    // Chercher la catway
+    const catway = await Catway.findById(id);
+    if (!catway) {
+      return res.status(404).json({ msg: 'Catway introuvable' });
+    }
+
+    // Mettre à jour
     const updated = await Catway.findByIdAndUpdate(
-      req.params.id,
-      { ...req.body },
-      { new: true }
+      id,
+      updateFields,
+      { new: true, runValidators: true }
     );
-    res.json(updated);
+
+    return res.json(updated);
   } catch (err) {
-    res.status(500).json({ msg: 'Erreur serveur' });
+    return res.status(500).json({ msg: 'Erreur serveur', error: err.message });
   }
 };
+
 
 //supprimer un catway
 exports.deleteCatway = async (req, res) => {
   try {
+
     const catway = await Catway.findById(req.params.id);
+    if (!catway) {
+      return res.status(404).json({ msg: 'Catway introuvable' });
+    }
 
-    if (!catway) return res.status(404).json({ msg: 'Catway introuvable' });
-    if (catway.user.toString() !== req.user.id)
-      return res.status(401).json({ msg: 'Non autorisé' });
-
-    await catway.remove();
-    res.json({ msg: 'Catway supprimée' });
+    await Catway.findByIdAndDelete(req.params.id); 
+    return res.json({ msg: 'Catway supprimée avec succès' });
   } catch (err) {
-    res.status(500).json({ msg: 'Erreur serveur' });
+    return res.status(500).json({ msg: 'Erreur serveur', error: err.message });
   }
 };
+
+
 
 
 //Liste de tous les catways 

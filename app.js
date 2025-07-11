@@ -8,13 +8,12 @@ const cors = require('cors');
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-  origin: 'http://localhost:3000'
-}));
+app.use(cors());
 
 connectDB();
 
 const indexRouter = require('./routes/index');
+
 
 // Routes
 // Définition des routes principales
@@ -23,13 +22,6 @@ app.use('/', indexRouter);
 app.use('/api', require('./routes/authRoutes'));
 app.use('/api/catways', require('./routes/catwayRoutes'));
 
-
-const path = require('path');
-
-app.use(express.static(path.join(__dirname, './frontend')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './frontend/build/index.html'));
-});
 
 
 // Middleware pour les erreurs 404 (route non trouvée)
@@ -49,6 +41,14 @@ app.use((err, req, res, next) => {
   });
 });
 
+
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, './frontend')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './frontend/build/', 'index.html'));
+});
 
 module.exports = app;
 
