@@ -86,9 +86,9 @@ function AdminDashboard() {
 
 
   return (
-    <div className="container mt-4">
+    <div class="container mt-4">
       <h2>Liste des Catways</h2>
-      <table className="table table-bordered mt-3">
+      <table class="table table-bordered mt-3">
         <thead>
           <tr>
             <th>Numéro</th>
@@ -107,13 +107,13 @@ function AdminDashboard() {
               <td>{catway.catwayState ? '✅' : '❌'}</td>
               <td>
                 <button
-                  className="btn btn-primary btn-sm me-2"
+                  class="btn btn-primary btn-sm me-2"
                   onClick={() => startEditing(catway)}
                 >
                   Modifier
                 </button>
                 <button
-                  className="btn btn-danger btn-sm"
+                  class="btn btn-danger btn-sm"
                   onClick={() => handleDelete(catway._id)}
                 >
                   Supprimer
@@ -125,28 +125,28 @@ function AdminDashboard() {
       </table>
 
       {selectedCatway && (
-        <div className="mt-4">
+        <div class="mt-4">
           <h4>✏️ Modifier Catway</h4>
-          <div className="d-flex flex-wrap gap-2">
+          <div class="d-flex flex-wrap gap-2">
             <input
               value={catwayNumber}
               onChange={(e) => setCatway(e.target.value)}
               placeholder="Numéro"
-              className="form-control"
+              class="form-control"
               style={{ width: '150px' }}
             />
             <input
               value={type}
               onChange={(e) => setType(e.target.value)}
               placeholder="Type"
-              className="form-control"
+              class="form-control"
               style={{ width: '150px' }}
             />
             <input
               value={boatName}
               onChange={(e) => setBN(e.target.value)}
               placeholder="Nom bateau"
-              className="form-control"
+              class="form-control"
               style={{ width: '150px' }}
             />
             <label>
@@ -154,15 +154,15 @@ function AdminDashboard() {
                 type="checkbox"
                 checked={catwayState}
                 onChange={(e) => setStatut(e.target.checked)}
-                className="form-check-input"
+                class="form-check-input"
               />
               Disponible
             </label>
-            <button className="btn btn-success" onClick={handleUpdate}>
+            <button class="btn btn-success" onClick={handleUpdate}>
               Enregistrer
             </button>
             <button
-              className="btn btn-secondary"
+              class="btn btn-secondary"
               onClick={() => setSelectedCatway(null)}
             >
               Annuler

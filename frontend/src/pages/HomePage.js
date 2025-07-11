@@ -64,17 +64,17 @@ function HomePage() {
   };
 
   return (
-    <div className="container mt-4">
+    <div class="container mt-4">
       <h2> Catways disponibles</h2>
-      <div className="row">
+      <div class="row">
         {catways.map((catway) => (
-          <div key={catway._id} className="col-md-4 mb-3">
-            <div className="card p-3">
+          <div key={catway._id} class="col-md-4 mb-3">
+            <div class="card p-3">
               <h5>{catway.catwayNumber}</h5>
               <p>Type : {catway.type}</p>
               <p>Bateau : {catway.boatName || '-'}</p>
               <button
-                className="btn btn-success"
+                class="btn btn-success"
                 onClick={() => setSelectedCatway(catway._id)}
               >
                 Réserver
@@ -85,24 +85,24 @@ function HomePage() {
       </div>
 
       {selectedCatway && (
-        <div className="mt-4">
+        <div class="mt-4">
           <h4>Nouvelle Réservation</h4>
           <input
             type="date"
             value={checkIn}
             onChange={(e) => setStartDate(e.target.value)}
-            className="form-control mb-2"
+            class="form-control mb-2"
           />
           <input
             type="date"
             value={checkOut}
             onChange={(e) => setEndDate(e.target.value)}
-            className="form-control mb-2"
+            class="form-control mb-2"
           />
-          <button className="btn btn-primary" onClick={createReservation}>
+          <button class="btn btn-primary" onClick={createReservation}>
             Réserver
           </button>
-          <button className="btn btn-secondary ms-2" onClick={() => setSelectedCatway(null)}>
+          <button class="btn btn-secondary ms-2" onClick={() => setSelectedCatway(null)}>
             Annuler
           </button>
         </div>
@@ -110,7 +110,7 @@ function HomePage() {
 
       <hr />
       <h3>Mes Réservations</h3>
-      <table className="table table-striped">
+      <table class="table table-striped">
         <thead>
           <tr>
             <th>Catway</th>
@@ -128,7 +128,7 @@ function HomePage() {
                   type="date"
                   value={res.checkIn?.slice(0, 10)}
                   onChange={(e) => setStartDate(e.target.value)}
-                  className="form-control"
+                  class="form-control"
                 />
               </td>
               <td>
@@ -136,19 +136,19 @@ function HomePage() {
                   type="date"
                   value={res.endDate?.slice(0, 10)}
                   onChange={(e) => checkOut(e.target.value)}
-                  className="form-control"
+                  class="form-control"
                 />
               </td>
               <td>{res.status}</td>
               <td>
                 <button
-                  className="btn btn-warning btn-sm me-2"
+                  class="btn btn-warning btn-sm me-2"
                   onClick={() => updateReservation(res._id)}
                 >
                   Modifier
                 </button>
                 <button
-                  className="btn btn-danger btn-sm"
+                  class="btn btn-danger btn-sm"
                   onClick={() => deleteReservation(res._id)}
                 >
                   Annuler
