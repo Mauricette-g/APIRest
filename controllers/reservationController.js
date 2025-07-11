@@ -20,8 +20,6 @@ exports.updateReservation = async (req, res) => {
     const reservation = await Reservation.findById(req.params.id);
 
     if (!reservation) return res.status(404).json({ msg: 'Réservation introuvable' });
-    if (reservation.user.toString() !== req.user.id)
-      return res.status(401).json({ msg: 'Non autorisé' });
 
     const updated = await Reservation.findByIdAndUpdate(
       req.params.id,
@@ -50,10 +48,10 @@ exports.deleteReservation = async (req, res) => {
   }
 };
 
-//Liste des réservations
-exports.getAllReservations = async (req, res) => {
+//Liste mes réservations
+exports.getReservations = async (req, res) => {
   try {
-    const reservations = await Reservation.find();
+    const reservations = await Reservation.find({ user: req.user.id });
     res.json(reservations);
   } catch (err) {
     res.status(500).json({ message: 'Erreur lors de la récupération des réservations' });
