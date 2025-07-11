@@ -3,8 +3,6 @@ const express = require('express');
 const connectDB = require('./db/mongo');
 require('dotenv').config();
 
-const PORT = process.env.PORT || 5000;
-
 const cors = require('cors');
 
 
@@ -52,10 +50,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './frontend/build/', 'index.html'));
 });
 
-
-app.listen(PORT, () => {
-  console.log(`Serveur lancé sur le port ${PORT}`);
-});
 
 module.exports = app;
 
