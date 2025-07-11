@@ -3,10 +3,11 @@ import axios from 'axios';
 
 function HomePage() {
   const [catways, setCatways] = useState([]);
-  const [reservations] = useState([]);
+  const [reservations, setReservations] = useState([]);
   const [selectedCatway, setSelectedCatway] = useState(null);
   const [checkIn, setStartDate] = useState('');
   const [checkOut, setEndDate] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const token = localStorage.getItem('token');
 
@@ -22,6 +23,38 @@ function HomePage() {
 
   fetchCatways();
 }, []);
+
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/catways/:id/reservations/`, { credentials: 'include' })
+      .then(res => {
+        if (res.status === 401) {
+          setIsLoggedIn(false);
+          return;
+        }
+        if (!res.ok) throw new Error('Erreur serveur');
+        setIsLoggedIn(true);
+        return res.json();
+      })
+      .then(data => {
+        if (data) setReservations(data);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }, []);
+
+
+
+  function handleReservationClick(catway) {
+  if (!isLoggedIn) {
+    window.location.href = '/login';
+    return;
+  }
+
+  setSelectedCatway(catway._id);
+  // tu peux appeler une API ici aussi
+  }
 
 
   const createReservation = async () => {
@@ -65,6 +98,7 @@ function HomePage() {
 
   return (
     <div class="container mt-4">
+      <section>
       <h2> Catways disponibles</h2>
       <div class="row">
         {catways.map((catway) => (
@@ -75,7 +109,7 @@ function HomePage() {
               <p>Bateau : {catway.boatName || '-'}</p>
               <button
                 class="btn btn-success"
-                onClick={() => setSelectedCatway(catway._id)}
+                onClick={() => handleReservationClick(catway)}
               >
                 Réserver
               </button>
@@ -83,7 +117,7 @@ function HomePage() {
           </div>
         ))}
       </div>
-
+      
       {selectedCatway && (
         <div class="mt-4">
           <h4>Nouvelle Réservation</h4>
@@ -107,8 +141,10 @@ function HomePage() {
           </button>
         </div>
       )}
+      </section>
 
-      <hr />
+      {isLoggedIn ? (
+        <section>
       <h3>Mes Réservations</h3>
       <table class="table table-striped">
         <thead>
@@ -158,6 +194,9 @@ function HomePage() {
           ))}
         </tbody>
       </table>
+      </section>) : (
+        <p></p>
+      )}
     </div>
   );
 }
