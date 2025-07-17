@@ -24,6 +24,9 @@ function HomePage() {
   fetchCatways();
 }, []);
 
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem('token'));
+  }, []);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/catways/:id/reservations/`, { credentials: 'include' })
