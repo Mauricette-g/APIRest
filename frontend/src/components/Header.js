@@ -16,7 +16,7 @@ function Header() {
         <div class="nav col-12 col-md-auto mb-2 px-2"> 
             <li><Link to="/"  class="nav-link px-2 link-secondary">Accueil</Link></li> 
             <button type="button" class="btn btn-outline-primary me-2"><Link to="/login" class="nav-link px-2 link-secondary">Connexion </Link></button> 
-            <button type="button" class="btn btn-primary"><Link to="/" ="/register" class="nav-link px-2 link-secondary">S'inscrire</Link></button> 
+            <button type="button" class="btn btn-primary"><Link to="/register" class="nav-link px-2 link-secondary">S'inscrire</Link></button> 
         </div> 
     </header> 
 
