@@ -19,8 +19,8 @@ const indexRouter = require('./routes/index');
 // Définition des routes principales
 app.use('/', indexRouter);
 //app.use('/users', usersRouter); // Ex : route REST pour les utilisateurs
-app.use('/api', require('./routes/authRoutes'));
-app.use('/api/catways', require('./routes/catwayRoutes'));
+app.use('/', require('./routes/authRoutes'));
+app.use('/catways', require('./routes/catwayRoutes'));
 
 
 
