@@ -3,6 +3,7 @@ const express = require('express');
 const connectDB = require('./db/mongo');
 require('dotenv').config();
 
+
 const cors = require('cors');
 
 
@@ -18,10 +19,9 @@ const indexRouter = require('./routes/index');
 // Routes
 // Définition des routes principales
 app.use('/', indexRouter);
-//app.use('/users', usersRouter); // Ex : route REST pour les utilisateurs
+app.use('/users', usersRouter); // Ex : route REST pour les utilisateurs
 app.use('/', require('./routes/authRoutes'));
 app.use('/catways', require('./routes/catwayRoutes'));
-
 
 
 // Middleware pour les erreurs 404 (route non trouvée)
@@ -49,6 +49,7 @@ app.use(express.static(path.join(__dirname, './frontend/build')));
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './frontend/build/', 'index.html'));
 });
+
 
 
 module.exports = app;
