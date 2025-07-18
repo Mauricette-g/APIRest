@@ -2,6 +2,7 @@
 
 
 Lien d'accès : ── Page d'accueil - (https://api-rest-tau.vercel.app/)
+
                ── Interface admin - (https://api-rest-tau.vercel.app/admin)
 
 ---
@@ -16,19 +17,33 @@ Authentification : JWT
 
 
 catway-reservation-app/
+
 ├── controllers/
+
 ├── models/
+
 ├── routes/
+
 ├── middlewares/
+
 ├── env
+
 ├── app.js
+
 ├── frontend/
+
 │   ├── public/
+
 │   ├── src/
+
 │   │   ├── components/
+
 │   │   ├── pages/
+
 │   │   ├── App.js
+
 │   │   └── .env
+
 ├── package.json
 
 
