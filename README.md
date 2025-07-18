@@ -1,19 +1,50 @@
 # API REST - Gestion des réservations de catway
 
 
+Lien d'accès : ── Page d'accueil - (https://api-rest-tau.vercel.app/)
+               ── Interface admin - (https://api-rest-tau.vercel.app/admin)
+
 ---
+
+Backend (API REST) : Node.js + Express
+
+Frontend (interface utilisateur et admin) : React.js 
+
+Base de données : MongoDB (MongoDB Atlas ou local)
+
+Authentification : JWT
+
+
+catway-reservation-app/
+├── controllers/
+├── models/
+├── routes/
+├── middlewares/
+├── env
+├── app.js
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── App.js
+│   │   └── .env
+├── package.json
+
+
+
 
 ##  Endpoints
 
 ### Catways
 
-| Méthode | Endpoint                | Description                    |
-|---------|-------------------------|--------------------------------|
-| GET     | `/catways`              | Lister tous les catways        |
-| GET     | `/catways/dispo`        | Lister tous les catways dispo  |
-| POST    | `/catways/create-catway`| Créer un catway                |
-| PUT     | `/catways/{id}`         | Modifier un catway             |
-| DELETE  | `/catways/{id}`         | Supprimer un catway par ID     |
+| Méthode | Endpoint                | Description                        |
+|---------|-------------------------|------------------------------------|
+| GET     | `/catways`              | Lister tous les catways (admin)    |
+| GET     | `/catways/dispo`        | Lister tous les catways dispo      |
+| POST    | `/catways/create-catway`| Créer un catway (admin)            |
+| PUT     | `/catways/{id}`         | Modifier un catway (admin)         |
+| DELETE  | `/catways/{id}`         | Supprimer un catway par ID (admin) |
 
 ---
 
@@ -30,12 +61,12 @@
 
 ### Utilisateurs
 
-| Méthode | Endpoint         | Description                   |
-|---------|------------------|-------------------------------|
-| GET     | `/users`         | Lister tous les utilisateurs  |
-| POST    | `/users/add`     | Créer un utilisateur          |
-| PUT     | `/users/{id}`    | Modifier un utilisateur       |
-| DELETE  | `/users/{id}`    | Supprimer un utilisateur      |
+| Méthode | Endpoint         | Description                           |
+|---------|------------------|---------------------------------------|
+| GET     | `/users`         | Lister tous les utilisateurs (admin)  |
+| POST    | `/users/add`     | Créer un utilisateur (admin)          |
+| PUT     | `/users/{id}`    | Modifier un utilisateur (admin)       |
+| DELETE  | `/users/{id}`    | Supprimer un utilisateur (admin)      |
 
 ---
 
